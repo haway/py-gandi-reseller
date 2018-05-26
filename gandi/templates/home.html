@@ -1,16 +1,20 @@
 <html>
 	<head>
 		<title>HaWay Domain Registrar</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <meta charset="utf-8">
 	</head>
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-<p>Hi {{ username }}, you are already logged-in!</p>
+
+<h2><div class="alert alert-success" role="alert"><p>Hi {{ username }}, Nice to see you again!</p></div></h2>
 
 
 <div>
-<h3>Your Personal Data in DB:</h3>
+<p>Your Personal Data in DB:</p>
 {% for contact in Contacts_list %}
 	<div>
 		Name: {{ contact.family }}<br>
@@ -26,14 +30,23 @@
 <br />
 
 <div>
-	<label name="qdomain">Query Domain Name:</label>
-	<input type="text" name="qdomain" id='qdomain' size="63" maxlength="63" placeholder="yourname" value='jaieuirquieqr'>
-	<select name='tld' id='tld'>
-		{% for tld in TLDs %}
-		<option value="{{tld}}">{{tld}}</option>
-		{% endfor %}
-	</select>
-	<button type="button" id='bDNQuery'>Query</button>
+    <div class="form-group">
+        <label name="qdomain" class="form-check-label">Query Domain Name:</label><br />
+    </div>
+
+    <div class="input-group col-8">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="">www.</span>
+        </div>
+        <input type="text" name="qdomain" id='qdomain' class='form-control' size="63" maxlength="63" placeholder="yourname">
+	    <select name='tld' id='tld' class="custom-select col-2">
+		    {% for tld in TLDs %}
+		    <option value="{{tld}}">{{tld}}</option>
+		    {% endfor %}
+	    </select>
+	    <button type="button" id='bDNQuery' class="btn btn-outline-primary">Query</button>
+    </div>
+</div>
 
 	<script>
 		$( document ).ready(function(){
@@ -68,10 +81,26 @@
 
 <div>
 	<h3>Your Domain name list:</h3><br />
-	{% for domain in Domains_list %}
-	{{ domain.fqdn }} <a href="/CTs/{{ domain.fqdn }}" >Contacts</a> <a href="/DNDetail/{{ domain.fqdn }}" >DN Detail</a> <a href="/preDNRenew/{{fqdn}}" >Renew</a><br />
-	{% endfor %}	
+    <table class="table">
+      <thead class="thead-dark">
+    <tr>
+      <th scope="col">Domain Name</th>
+      <th scope="col">DN Detail</th>
+      <th scope="col">Renew</th>
+    </tr>
+ </thead>
+  <tbody>
+        {% for domain in Domains_list %}
+            <tr>
+                <td>{{ domain.fqdn }} </td>
+                <td><a href="/DNDetail/{{ domain.fqdn }}" >DN Detail</a></td>
+                <td><a href="/preDNRenew/{{fqdn}}" >Renew</a></td>
+            </tr>
+        {% endfor %}	
+    </tbody>
+    </table>
 </div>
+
 <br />
 <div class='footer'>
 

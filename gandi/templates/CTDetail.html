@@ -2,17 +2,32 @@
 
 	<head>
 		<title>{{ CTID }} Detail information</title>
-	</head>
-	<body>
-		
-		<h3><a href='/index'>Back to Index</a></h3>
-		<h2>CTID: {{ CTID }}</h2><br />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <meta charset="utf-8">
+        
+    </head>
+    <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+<h3><a href='/index'>Back to Index</a></h3>
+
+<div class='container'>
+<div class="card border-dark mb-3" style="max-width: 30%;">
+  <div class="card-header">{{ CTID }}</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">Contact Information:</h5>
+    <p class="card-text">
 		First Name: {{ CTDATA.given }} <br />
 		Last Name: {{ CTDATA.family }} <br />
 		EMail: {{ CTDATA.email }} <br />
 		Zip: {{ CTDATA.zip }} <br />
 		Country: {{ CTDATA.country }} <br />
 		Mobile: {{ CTDATA.mobile }} <br />
+    </p>
+  </div>
+</div>
+</div>
 
 		<br>
 		<br>

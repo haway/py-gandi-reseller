@@ -1,25 +1,43 @@
 <html>
 
 	<head>
-	<title>{{ fqdn }} Detail information</title>
+	    <title>{{ fqdn }} Detail information</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <meta charset="utf-8">
+        
 	</head>
 	<body>
-		
-		Domain Name: {{ fqdn }}<br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
+<div class='container'>
+<div class="card border-dark mb-3" style="max-width: 30%;">
+  <div class="card-header">{{ fqdn }}</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">Detail Information:</h5>
+    <p class="card-text">
 		Owner: <a href="/CTDetail/{{ DNData.contacts.owner.handle }}">{{ DNData.contacts.owner.handle }} </a><br />
 		Admin: <a href="/CTDetail/{{ DNData.contacts.admin.handle }}">{{ DNData.contacts.admin.handle }} </a><br />
 		Tech: <a href="/CTDetail/{{ DNData.contacts.tech.handle }}">{{ DNData.contacts.tech.handle }} </a><br />
 		Bill: <a href="/CTDetail/{{ DNData.contacts.bill.handle }}">{{ DNData.contacts.bill.handle }} </a><br />
+        Created Date: {{ DNData.date_registry_creation }}<br />
+        Expired Date: {{ DNData.date_registry_end }}<br />
+        Status: {{ DNData.status }}<br />
 
 		NameServer: {{ DNData.nameservers }} <br /> 
+    </p>
+  </div>
+</div>
+</div>
+
 
         <hr>
         <h3>DNS Records:</h3><br />
 
-        <table>
-        <thead>
-            <tr><td>ID</td><td>Name</td><td>Type</td><td>TTL</td><td>Value</td></tr>
+    <div class='col-8'>
+        <table class="table">
+        <thead class="thead-dark">
+            <tr><th>ID</th><th>Name</th><th>Type</th><th>TTL</th><th>Value</th></tr>
         <tbody>
         {% for record in Records %}
             <tr>
@@ -32,6 +50,7 @@
         {% endfor %}
         </tbody>
         </table>
+    </div>
 
 <!--[{'ttl': 10800, 'type': 'A', 'name': '@', 'value': '217.70.184.38', 'id': '1532834556'}, {'ttl': 10800, 'type': 
 'CNAME', 'name': 'blog', 'value': 'blogs.vip.gandi.net.', 'id': '1532834541'}, {'ttl': 10800, 'type': 'CNAME', '
