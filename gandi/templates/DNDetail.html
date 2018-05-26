@@ -1,0 +1,53 @@
+<html>
+
+	<head>
+	<title>{{ fqdn }} Detail information</title>
+	</head>
+	<body>
+		
+		Domain Name: {{ fqdn }}<br />
+
+		Owner: <a href="/CTDetail/{{ DNData.contacts.owner.handle }}">{{ DNData.contacts.owner.handle }} </a><br />
+		Admin: <a href="/CTDetail/{{ DNData.contacts.admin.handle }}">{{ DNData.contacts.admin.handle }} </a><br />
+		Tech: <a href="/CTDetail/{{ DNData.contacts.tech.handle }}">{{ DNData.contacts.tech.handle }} </a><br />
+		Bill: <a href="/CTDetail/{{ DNData.contacts.bill.handle }}">{{ DNData.contacts.bill.handle }} </a><br />
+
+		NameServer: {{ DNData.nameservers }} <br /> 
+
+        <hr>
+        <h3>DNS Records:</h3><br />
+
+        <table>
+        <thead>
+            <tr><td>ID</td><td>Name</td><td>Type</td><td>TTL</td><td>Value</td></tr>
+        <tbody>
+        {% for record in Records %}
+            <tr>
+                <td>{{record.id}}</td>
+                <td>{{record.name}}</td>
+                <td>{{record.type}}</td>
+                <td>{{record.ttl}}</td>
+                <td>{{record.value}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+
+<!--[{'ttl': 10800, 'type': 'A', 'name': '@', 'value': '217.70.184.38', 'id': '1532834556'}, {'ttl': 10800, 'type': 
+'CNAME', 'name': 'blog', 'value': 'blogs.vip.gandi.net.', 'id': '1532834541'}, {'ttl': 10800, 'type': 'CNAME', '
+name': 'imap', 'value': 'access.mail.gandi.net.', 'id': '1532834550'}, {'ttl': 10800, 'type': 'CNAME', 'name': '
+pop', 'value': 'access.mail.gandi.net.', 'id': '1532834538'}, {'ttl': 10800, 'type': 'CNAME', 'name': 'smtp', 'v
+alue': 'relay.mail.gandi.net.', 'id': '1532834547'}, {'ttl': 10800, 'type': 'CNAME', 'name': 'webmail', 'value':
+ 'webmail.gandi.net.', 'id': '1532834544'}, {'ttl': 10800, 'type': 'CNAME', 'name': 'www', 'value': 'webredir.vi
+p.gandi.net.', 'id': '1532834553'}, {'ttl': 10800, 'type': 'MX', 'name': '@', 'value': '50 fb.mail.gandi.net.', 
+'id': '1532834562'}, {'ttl': 10800, 'type': 'MX', 'name': '@', 'value': '10 spool.mail.gandi.net.', 'id': '15328
+34559'}, {'ttl': 10800, 'type': 'TXT', 'name': '@', 'value': '"v=spf1 include:_mailcust.gandi.net ?all"', 'id': 
+'1532834946'}]
+-->
+
+		<br />
+		<br />
+		Debug:<br />
+		{{ DNData }}
+	</body>
+</html>

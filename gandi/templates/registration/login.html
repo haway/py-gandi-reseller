@@ -1,0 +1,13 @@
+
+<html>
+	<head>
+		<title>Login - Gandi Reseller</title>
+	</head>
+	<body>
+		<form action="" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type='submit'>Login</button>
+		</form>
+	</body>
+</html>

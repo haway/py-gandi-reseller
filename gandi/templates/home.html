@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<title>HaWay Domain Registrar</title>
+	</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+
+<p>Hi {{ username }}, you are already logged-in!</p>
+
+
+<div>
+<h3>Your Personal Data in DB:</h3>
+{% for contact in Contacts_list %}
+	<div>
+		Name: {{ contact.family }}<br>
+		Email: {{ contact.email }} <br>
+		Address(EN): {{ contact.enaddr }}<br>
+		Address(ZH): {{ contact.zhaddr }}<br> Phone: {{ contact.phone }}
+	</div>
+{% endfor %}
+</div>
+
+<br />
+<hr>
+<br />
+
+<div>
+	<label name="qdomain">Query Domain Name:</label>
+	<input type="text" name="qdomain" id='qdomain' size="63" maxlength="63" placeholder="yourname" value='jaieuirquieqr'>
+	<select name='tld' id='tld'>
+		{% for tld in TLDs %}
+		<option value="{{tld}}">{{tld}}</option>
+		{% endfor %}
+	</select>
+	<button type="button" id='bDNQuery'>Query</button>
+
+	<script>
+		$( document ).ready(function(){
+			$( '#bDNQuery' ).click(function(){
+				fqdn = $( '#qdomain' ).val();
+				tld = $( '#tld' ).val();
+				$.ajax({ 
+					url: "/jDNQuery/"+fqdn+tld,
+					dataType: "json",
+				})
+				.done( function( result ){
+					$.each( result, function( fqdn, dnstatus ){
+						if ( dnstatus == "available" ){
+								$( '#dnstatus' ).html("<h3>"+fqdn+" available, <a href='/preDNCreate/"+fqdn+"'>Register NOW</h3>");
+						}else{
+								$( '#dnstatus' ).html("<h3>"+fqdn+" Unavailable, :( </h3>");
+						}
+					});
+				});
+
+			});
+		});
+	</script>
+
+	<div id='dnstatus'>
+	</div>
+	
+</div>
+
+<br />
+<hr>
+
+<div>
+	<h3>Your Domain name list:</h3><br />
+	{% for domain in Domains_list %}
+	{{ domain.fqdn }} <a href="/CTs/{{ domain.fqdn }}" >Contacts</a> <a href="/DNDetail/{{ domain.fqdn }}" >DN Detail</a> <a href="/preDNRenew/{{fqdn}}" >Renew</a><br />
+	{% endfor %}	
+</div>
+<br />
+<div class='footer'>
+
+<a href="{% url 'logout' %}?next=/accounts/login/">Logout</a>
+
+</div>
+<br />
+<hr>
+Debug:<br />
+{{ DEBUG }}
+<br>
+
+</body>
+</html>

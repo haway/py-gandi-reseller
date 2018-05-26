@@ -1,0 +1,6 @@
+import xmlrpc.client
+
+APIKEY = 'your gandi key here'
+
+gapi = xmlrpc.client.ServerProxy('https://rpc.gandi.net/xmlrpc/')
+

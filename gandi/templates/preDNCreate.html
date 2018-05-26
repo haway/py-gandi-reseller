@@ -1,0 +1,42 @@
+<html>
+
+	<head>
+	<title>Register {{ fqdn }} !</title>
+	</head>
+	<body>
+		<form action='/DNCreate' method='GET'>
+			{% csrf_token %}
+			You are registering domain name is :<input type="text" name="fqdn" value="{{fqdn}}"><br />
+			<label>Duration:</label>
+			<select name="duration">
+				<option value=1>1 year</option>
+				<option value=2>2 year</option>
+				<option value=3>3 year</option>
+				<option value=4>4 year</option>
+				<option value=5>5 year</option>
+				<option value=6>6 year</option>
+				<option value=7>6 year</option>
+				<option value=8>8 year</option>
+				<option value=9>9 year</option>
+			</select>
+			<br />
+			Contacts:
+			Owner: <input type="text" name="owner" value="{{ctid}}"></br>
+			Admin: <input type="text" name="admin" value="{{ctid}}"></br>
+			Bill: <input type="text" name="bill" value="{{ctid}}"></br>
+			Tech: <input type="text" name="tech" value="{{ctid}}"></br>
+			<br />
+			NamerServer: <input type="text" name="NS1" value="Gandi DNS"><br />
+			NamerServer: <input type="text" name="NS2" value="Gandi DNS"><br />
+			NamerServer: <input type="text" name="NS3" value="Gandi DNS"><br />
+			NamerServer: <input type="text" name="NS4" value="Gandi DNS"><br />
+			NamerServer: <input type="text" name="NS5" value="Gandi DNS"><br />
+			<br />
+			<input type="submit" value='{{fqdn}}! Go'>
+		</form>
+		<br />
+		<br />
+		Debug:<br />
+		{{ DEBUG }}
+	</body>
+</html>
